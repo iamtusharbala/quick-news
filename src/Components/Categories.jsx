@@ -2,7 +2,7 @@ import React from 'react'
 
 const Categories = ({ categoryName, onClick }) => {
     return (
-        <button type="button" className="btn btn-outline-primary" onClick={onClick} >{categoryName}</button>
+        <span className='category-list-item mx-3' style={{ cursor: 'pointer', fontSize: '1.25rem' }} onClick={onClick} >{categoryName[0].toUpperCase() + categoryName.slice(1)}</span>
     )
 }
 

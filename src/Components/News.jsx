@@ -60,7 +60,7 @@ const countryCode = {
 }
 
 
-const categories = ['business', 'entertainment', 'general', 'health', 'science', 'sports', 'technology']
+const categories = ['general', 'business', 'entertainment', 'health', 'science', 'sports', 'technology']
 
 const News = () => {
     const [articles, setArticles] = useState([])
@@ -81,21 +81,21 @@ const News = () => {
     return (
         <div className='container my-5'>
             <div className="category-group">
-                <div className="btn-group d-flex gap-3 text-center mx-auto mb-3" role="group" aria-label="Basic example">
+                <div className="text-center mx-auto mb-3" role="group" aria-label="Basic example">
                     {categories.map((category, index) => <Categories key={index} categoryName={category} onClick={() => setCategory(category)} />)}
                 </div>
-                <div className="dropdown me-auto">
-                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="dropdown d-flex justify-content-end">
+                    <button className="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {countryCode[country]}
                     </button>
                     <ul className="dropdown-menu" style={{ maxHeight: '200px', overflowY: 'auto' }}>
-                        {Object.keys(countryCode).map((key) => <li><a className="dropdown-item" href="#" onClick={() => setCountry(key)}>{countryCode[key]}</a></li>)}
+                        {Object.keys(countryCode).map((country, index) => <li key={index}><a className="dropdown-item" onClick={() => setCountry(country)}>{countryCode[country]}</a></li>)}
                     </ul>
                 </div>
             </div>
             <div className="article mt-5">
                 <div className="main-text mb-3">
-                    <h1>Top Headlines from {countryCode[country]} - {category}</h1>
+                    <h1>Top Headlines from {countryCode[country]} - {category[0].toUpperCase() + category.slice(1)}</h1>
                 </div>
                 <div className="articles d-flex flex-wrap justify-content-between align-items-center gap-4">
                     {articles && articles.map((article, index) => article.title !== '[Removed]' && <NewsCard key={index} author={article.author} description={article.description} title={article.title} url={article.url} urlToImage={article.urlToImage} />)}
